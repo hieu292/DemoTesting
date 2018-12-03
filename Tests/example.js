@@ -1,14 +1,35 @@
-function sum(a, b) {
-  return a * b;
-}
+// TDD
+// sum() -> 0
+// sum(5) -> 5
+// sum(1, 2) -> 3
 
-test('total test', () => {
-  const a = 1;
-  const b = 2;
-  const total = sum(a, b)
-  const result = 3
-  if (total !== 3) {
-    throw new Error(`Total of ${a} and ${b} must be ${result}`);
-  }
-  // expect(total).toBe(result);
+// // case 1:
+// function sum() {
+//   return 0;
+// }
+
+// // case 2:
+// function sum(number = 0) {
+//   // return number || 0;
+//   return number;
+// }
+
+// // case 3:
+// function sum(...numbers) {
+//   return numbers.reduce((acc, n) => acc + n, 0);
+// }
+
+test('sum() -> 0', () => {
+  const result = sum();
+  expect(result).toBe(0);
+})
+
+test('sum(5) -> 5', () => {
+  const result = sum(5);
+  expect(result).toBe(5);
+})
+
+test('sum(1, 2) -> 3', () => {
+  const result = sum(1, 2);
+  expect(result).toBe(3);
 })

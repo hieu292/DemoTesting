@@ -1,38 +1,16 @@
 import React from "react";
-import { View, Text, Button, WebView } from "react-native";
 import { createStackNavigator } from "react-navigation";
-
-class HomeScreen extends React.Component {
-    render() {
-        return (
-            <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-                <Text>Home Screen</Text>
-                <Button
-                    title={"Pay"}
-                    onPress={() => this.props.navigation.navigate("Pay")}
-                />
-            </View>
-        );
-    }
-}
-
-class PayScreen extends React.Component {
-    render() {
-        return (
-            <WebView
-                source={{uri: 'http://localhost:8000/pay'}}
-                style={{marginTop: 20}}
-            />
-        );
-    }
-}
+import HomeScreen from './src/homeScreen'
+import PayScreen from './src/payScreen'
+import TestScreen from './src/testScreen'
 
 const AppNavigator = createStackNavigator({
         Home: HomeScreen,
-        Pay: PayScreen
+        Pay: PayScreen,
+        Test: TestScreen
     },
     {
-        initialRouteName: "Home"
+        initialRouteName: "Test"
     });
 
 export default AppNavigator;

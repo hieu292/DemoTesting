@@ -35,4 +35,9 @@ public class ToastModule extends ReactContextBaseJavaModule {
     public void show(String message, int duration) {
         Toast.makeText(getReactApplicationContext(), message, duration).show();
     }
+
+    @ReactMethod
+    public void show(String message) {
+        Toast.makeText(getReactApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    }
 }

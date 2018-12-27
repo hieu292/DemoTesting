@@ -2,6 +2,7 @@ package com.braintreern;
 
 import android.app.Application;
 
+import com.braintreern.AudioPlayer.AudioPlayerPackages;
 import com.braintreern.ImagePicker.ImagePickerPackage;
 import com.braintreern.toaster.ToastPackage;
 import com.facebook.react.ReactApplication;
@@ -26,7 +27,8 @@ public class MainApplication extends Application implements ReactApplication {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
                     new ToastPackage(),
-                    new ImagePickerPackage()
+                    new ImagePickerPackage(),
+                    new AudioPlayerPackages()
             );
         }
 

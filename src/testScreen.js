@@ -1,4 +1,4 @@
-import { Toaster, ImagePicker } from '../lib'
+import { ImagePicker } from '../lib'
 import React from 'react'
 import { Button, Text, View } from 'react-native'
 
@@ -8,11 +8,11 @@ class TestScreen extends React.Component {
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <Text>Test Screen</Text>
         <Button
-          title={"Show Toaster"}
-          onPress={() => Toaster.show("Okay paid!", Toaster.SHORT)}
+          title={"Audio Player"}
+          onPress={() => this.props.navigation.navigate("Player")}
         />
         <Button
-          title={"Show Picker"}
+          title={"Show Image Picker"}
           onPress={() => ImagePicker.openSelectDialog(
             {}, // no config yet
             (uri) => { console.log(uri) },

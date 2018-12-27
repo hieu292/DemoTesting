@@ -24,7 +24,7 @@ public class ImagePickerModule extends ReactContextBaseJavaModule implements Act
 
     @Override
     public String getName() {
-        return "ImagePickerAndroid";
+        return "ImagePickerCustom";
     }
 
     @ReactMethod

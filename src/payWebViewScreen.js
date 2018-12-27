@@ -1,15 +1,15 @@
 import React from 'react'
 import { WebView } from 'react-native'
 
-class PayScreen extends React.Component {
+class PayWebViewScreen extends React.Component {
   render() {
     return (
       <WebView
-        source={{uri: 'http://localhost:8000/pay'}}
+        source={{uri: 'http://192.168.10.59:8000'}}
         style={{marginTop: 20}}
       />
     );
   }
 }
 
-export default PayScreen;
+export default PayWebViewScreen;

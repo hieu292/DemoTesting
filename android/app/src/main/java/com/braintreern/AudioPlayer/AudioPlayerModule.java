@@ -19,7 +19,7 @@ public class AudioPlayerModule extends ReactContextBaseJavaModule {
 
     @Override
     public String getName() {
-        return "AudioPlayerAndroid";
+        return "AudioPlayerCustom";
     }
 
     @ReactMethod

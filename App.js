@@ -1,18 +1,16 @@
 import React from "react";
 import { createStackNavigator } from "react-navigation";
 import HomeScreen from './src/homeScreen'
-import PayScreen from './src/payScreen'
-import TestScreen from './src/testScreen'
+import PayWebViewScreen from './src/payWebViewScreen'
 import PlayerScreen from './src/playerScreen'
 
 const AppNavigator = createStackNavigator({
         Home: HomeScreen,
-        Pay: PayScreen,
-        Test: TestScreen,
+        PayWebView: PayWebViewScreen,
         Player: PlayerScreen
     },
     {
-        initialRouteName: "Test"
+        initialRouteName: "Home"
     });
 
 export default AppNavigator;

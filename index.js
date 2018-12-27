@@ -1,6 +1,6 @@
 /** @format */
 
-import {AppRegistry} from 'react-native';
+import {AppRegistry, YellowBox} from 'react-native';
 import App from './App';
 import {name as appName} from './app.json';
 import MessageQueue from 'react-native/Libraries/BatchedBridge/MessageQueue';
@@ -9,7 +9,7 @@ import MessageQueue from 'react-native/Libraries/BatchedBridge/MessageQueue';
 // console.disableYellowBox = true;
 
 // Spy debugging
-if (__DEV__) {
+if (false) {
   const logSpy = (info) => {
     const fromTo = info.type === 0 ? 'TO JS: ' : 'TO ANDROID: ';
     const methodSignature = info.module + '.' + info.method + '(' + JSON.stringify(info.args) + ')';
@@ -18,5 +18,6 @@ if (__DEV__) {
   MessageQueue.spy(logSpy);
 }
 
+YellowBox.ignoreWarnings(['unknown call: "relay:check"']);
 
 AppRegistry.registerComponent(appName, () => App);

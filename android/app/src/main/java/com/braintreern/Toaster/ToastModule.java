@@ -1,4 +1,4 @@
-package com.braintreern.toaster;
+package com.braintreern.Toaster;
 
 import android.widget.Toast;
 

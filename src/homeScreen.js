@@ -1,4 +1,4 @@
-import { ImagePicker, BraintreePayment } from '../lib'
+import { ImagePicker, BraintreePayment, CookieManager, CalendarManager } from '../lib'
 import React from 'react'
 import { Button, Text, View } from 'react-native';
 
@@ -27,15 +27,25 @@ class HomeScreen extends React.Component {
           onPress={this.paySdk}
         />
         <Button
-          title={"Audio Player"}
+          title={"Audio Player Android"}
           onPress={() => this.props.navigation.navigate("Player")}
         />
         <Button
-          title={"Show Image Picker"}
+          title={"Show Image Picker Android"}
           onPress={() => ImagePicker.openSelectDialog(
             {}, // no config yet
             (uri) => { console.log(uri) },
             (error) => { console.log(error) })}
+        />
+        <Button
+          title={"Clear Cookie Ios"}
+          onPress={() => CookieManager.clearCookies()}
+        />
+        <Button
+          title={"Log Calendar Ios"}
+          onPress={() => CalendarManager.addEvent("One", "Two", 3, function(o) {
+            console.log('In Callback', o);
+          })}
         />
       </View>
     );

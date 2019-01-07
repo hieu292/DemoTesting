@@ -7,7 +7,7 @@ target 'BraintreeRN' do
 
   # Pods for BraintreeRN
 
-  pod 'BraintreeDropIn', '~> 6.0'
+  pod 'BraintreeDropIn'
 
   # uncomment the next line to support credit card scanning
   pod 'CardIO'

@@ -38,6 +38,9 @@
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		5A05147421DE0AAB00890F5F /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A05147321DE0AAB00890F5F /* CalendarManager.swift */; };
 		5A05149B21DE0B4400890F5F /* CalendarManagerBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A05149A21DE0B4400890F5F /* CalendarManagerBridge.m */; };
+		5A2F46E121E34FBB005C94B2 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2F46E021E34FBB005C94B2 /* CounterView.swift */; };
+		5A2F470821E34FE6005C94B2 /* CounterViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2F470721E34FE6005C94B2 /* CounterViewManager.m */; };
+		5A2F470A21E35019005C94B2 /* CounterViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2F470921E35019005C94B2 /* CounterViewManager.swift */; };
 		5A765FD921DDC9BA006390AB /* CookieManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A765FD821DDC9BA006390AB /* CookieManager.swift */; };
 		5A76600021DDCA50006390AB /* CookieManagerBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A765FFF21DDCA50006390AB /* CookieManagerBridge.m */; };
 		5AC8810921E06F5C00CDADF2 /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC8810821E06F5C00CDADF2 /* Counter.swift */; };
@@ -347,6 +350,9 @@
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A05147321DE0AAB00890F5F /* CalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
 		5A05149A21DE0B4400890F5F /* CalendarManagerBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalendarManagerBridge.m; sourceTree = "<group>"; };
+		5A2F46E021E34FBB005C94B2 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
+		5A2F470721E34FE6005C94B2 /* CounterViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CounterViewManager.m; sourceTree = "<group>"; };
+		5A2F470921E35019005C94B2 /* CounterViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterViewManager.swift; sourceTree = "<group>"; };
 		5A765FD721DDC9BA006390AB /* BraintreeRN-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BraintreeRN-Bridging-Header.h"; sourceTree = "<group>"; };
 		5A765FD821DDC9BA006390AB /* CookieManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookieManager.swift; sourceTree = "<group>"; };
 		5A765FFF21DDCA50006390AB /* CookieManagerBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CookieManagerBridge.m; sourceTree = "<group>"; };
@@ -508,6 +514,9 @@
 				5A05149A21DE0B4400890F5F /* CalendarManagerBridge.m */,
 				5AC8810821E06F5C00CDADF2 /* Counter.swift */,
 				5AC8812F21E06FB300CDADF2 /* Counter.m */,
+				5A2F46E021E34FBB005C94B2 /* CounterView.swift */,
+				5A2F470721E34FE6005C94B2 /* CounterViewManager.m */,
+				5A2F470921E35019005C94B2 /* CounterViewManager.swift */,
 			);
 			name = BraintreeRN;
 			sourceTree = "<group>";
@@ -1139,11 +1148,14 @@
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				5A765FD921DDC9BA006390AB /* CookieManager.swift in Sources */,
 				5A76600021DDCA50006390AB /* CookieManagerBridge.m in Sources */,
+				5A2F470821E34FE6005C94B2 /* CounterViewManager.m in Sources */,
+				5A2F470A21E35019005C94B2 /* CounterViewManager.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				5AC8813021E06FB300CDADF2 /* Counter.m in Sources */,
 				5A05149B21DE0B4400890F5F /* CalendarManagerBridge.m in Sources */,
 				5A05147421DE0AAB00890F5F /* CalendarManager.swift in Sources */,
 				5AC8810921E06F5C00CDADF2 /* Counter.swift in Sources */,
+				5A2F46E121E34FBB005C94B2 /* CounterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

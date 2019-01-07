@@ -47,6 +47,10 @@ class HomeScreen extends React.Component {
             console.log('In Callback', o);
           })}
         />
+        <Button
+          title={"Counter Ios"}
+          onPress={() => this.props.navigation.navigate("Counter")}
+        />
       </View>
     );
   }

@@ -1,21 +1,15 @@
 //
 //  Counter.m
-//  BraintreeRN
+//  CounterApp
 //
-//  Created by builder on 1/5/19.
-//  Copyright © 2019 Facebook. All rights reserved.
+//  Created by Andrei Pfeiffer on 3/29/18.
 //
 
-#import <Foundation/Foundation.h>
 #import "React/RCTBridgeModule.h"
+#import "React/RCTEventEmitter.h"
 
-@interface RCT_EXTERN_MODULE(Counter, NSObject)
-
-
-
-+ (BOOL)requiresMainQueueSetup
-{
-  return YES;
-}
-
+@interface RCT_EXTERN_MODULE(Counter, RCTEventEmitter)
+RCT_EXTERN_METHOD(increment)
+RCT_EXTERN_METHOD(getCount: (RCTResponseSenderBlock)callback)
+RCT_EXTERN_METHOD(decrement: (RCTPromiseResolveBlock)resolve rejecter: (RCTPromiseRejectBlock)reject)
 @end

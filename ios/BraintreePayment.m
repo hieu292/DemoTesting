@@ -11,7 +11,9 @@
 
 @interface RCT_EXTERN_MODULE(BraintreePayment, NSObject)
 
-RCT_EXTERN_METHOD(pay:(NSDictionary *)config (RCTPromiseResolveBlock)resolve (RCTPromiseRejectBlock)reject);
+RCT_EXTERN_METHOD(pay:(NSDictionary *)config
+                  resolver: (RCTPromiseResolveBlock)resolve
+                  rejecter: (RCTPromiseRejectBlock)reject)
 
 + (BOOL)requiresMainQueueSetup
 {

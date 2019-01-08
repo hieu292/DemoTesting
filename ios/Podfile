@@ -12,6 +12,8 @@ target 'BraintreeRN' do
   
   pod 'Alamofire', '~> 4.8'
 
+  pod 'SwiftyJSON', '~> 4.0'
+
   # uncomment the next line to support credit card scanning
   pod 'CardIO'
 

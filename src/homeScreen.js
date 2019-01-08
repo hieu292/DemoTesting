@@ -6,8 +6,8 @@ class HomeScreen extends React.Component {
   paySdk = async () => {
     try {
       const data = await BraintreePayment.pay({
-        tokenServerUrl: "http://192.168.10.59:8000/api/braintree/v1/getToken/",
-        nonceServerUrl: "http://192.168.10.59:8000/api/braintree/v1/sandbox"
+        tokenServerUrl: "http://192.168.10.115:8000/api/braintree/v1/getToken/",
+        nonceServerUrl: "http://192.168.10.115:8000/api/braintree/v1/sandbox"
       });
       console.log("data response: ", JSON.parse(data));
     } catch (error) {

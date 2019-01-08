@@ -6,9 +6,11 @@
  */
 
 #import "AppDelegate.h"
-
+#import "BraintreeCore.h"
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import "React/RCTLinkingManager.h"
+
 
 @implementation AppDelegate
 
@@ -33,7 +35,24 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  [BTAppSwitch setReturnURLScheme:self.paymentsURLScheme];
   return YES;
+}
+  
+  - (BOOL)application:(UIApplication *)application
+              openURL:(NSURL *)url
+              options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    
+    if ([url.scheme localizedCaseInsensitiveCompare:self.paymentsURLScheme] == NSOrderedSame) {
+      return [BTAppSwitch handleOpenURL:url options:options];
+    }
+    
+    return [RCTLinkingManager application:application openURL:url options:options];
+  }
+  
+- (NSString *)paymentsURLScheme {
+  NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+  return [NSString stringWithFormat:@"%@.%@", bundleIdentifier, @"payments"];
 }
 
 @end

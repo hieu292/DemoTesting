@@ -7,89 +7,99 @@
 //
 
 import Foundation
+import UIKit
 import Alamofire
 import Braintree
 import BraintreeDropIn
+import SwiftyJSON
 
 @objc(BraintreePayment)
-class BraintreePayment: NSObject {
+class BraintreePayment: UIViewController {
+
+  @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
   
   var tokenServerUrl: String = "";
   var nonceServerUrl: String = "";
+  var token: String = "";
+  var promiseResolver: RCTPromiseResolveBlock?;
+  var promiseRejecter: RCTPromiseRejectBlock?;
   
-  func fetchClientToken() -> String {
+  func fetchClientToken() {
       Alamofire.request(self.tokenServerUrl).responseJSON { response in
-        if let json = response.value {
-          print("JSON: \(json)") // serialized json response
+        switch response.result {
+        case .success(let value):
+          let json = JSON(value)
+          if let clientToken = json["clientToken"].string {
+            self.token = clientToken
+            self.showDropIn()
+          }
+        case .failure(let error):
+          self.promiseRejecter?("E_GET_TOKEN", "cannot get token", error)
         }
-        
-        //      if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
-        //        print("Data: \(utf8Text)") // original server data as UTF8 string
-        //      }
-        
       }
-    return "ok"
-
   }
   
-//  func showDropIn(clientTokenOrTokenizationKey: String) {
-//    let request =  BTDropInRequest()
-//    let dropIn = BTDropInController(authorization: clientTokenOrTokenizationKey, request: request)
-//    { (controller, result, error) in
-//      if (error != nil) {
-//        print("ERROR")
-//      } else if (result?.isCancelled == true) {
-//        print("CANCELLED")
-//      } else if let result = result {
-//        // Use the BTDropInResult properties to update your UI
-//        // result.paymentOptionType
-//        // result.paymentMethod
-//        // result.paymentIcon
-//        // result.paymentDescription
-//      }
-//      controller.dismiss(animated: true, completion: nil)
-//    }
-//    self.present(dropIn!, animated: true, completion: nil)
-//  }
-//
-//  func sendRequestPaymentToServer(nonce: String, amount: String) {
-//    let paymentURL = URL(string: nonceServerUrl)!
-//    var request = URLRequest(url: paymentURL)
-//    request.httpBody = "payment_method_nonce=\(nonce)&amount=\(amount)".data(using: String.Encoding.utf8)
-//    request.httpMethod = "POST"
-//
-//    URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) -> Void in
-//      guard let data = data else {
-//        self?.show(message: error!.localizedDescription)
-//        return
-//      }
-//
-//      guard let result = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any], let success = result?["success"] as? Bool, success == true else {
-//        self?.show(message: "Transaction failed. Please try again.")
-//        return
-//      }
-//
-//      self?.show(message: "Successfully charged. Thanks So Much :)")
-//      }.resume()
-//  }
+  func showDropIn() {
+    let request = BTDropInRequest()
+    let dropIn = BTDropInController(authorization: self.token, request: request)
+    { (controller, result, error) in
+      if (error != nil) {
+        self.promiseRejecter?("E_ERROR", "Unexpected", error)
+      } else if (result?.isCancelled == true) {
+        self.show(message: "Transaction Cancelled")
+        self.promiseRejecter?("E_USER_CANCELLED", "User Cancelled", error)
+      } else if let nonce = result?.paymentMethod?.nonce {
+        self.sendRequestPaymentToServer(nonce: nonce)
+      }
+      controller.dismiss(animated: true, completion: nil)
+    }
+    self.present(dropIn!, animated: true, completion: nil)
+  }
+
+  func sendRequestPaymentToServer(nonce: String) {
+    self.activityIndicator.startAnimating()
+    
+    let parameters: Parameters = [
+      "nonce": nonce
+    ]
+    
+    Alamofire.request(self.nonceServerUrl, method: .post, parameters: parameters).responseJSON { response in
+      switch response.result {
+      case .success(let value):
+        let json = JSON(value)
+        if let result = json.string {
+          self.show(message: "Successfully charged. Thanks So Much :)")
+          self.promiseResolver?(result)
+        }
+      case .failure(let error):
+        self.show(message: "Transaction failed. Please try again.")
+        self.promiseRejecter?("E_Transaction_Failed", "Transaction failed", error)
+      }
+    }
+  }
+  
+  func show(message: String) {
+    DispatchQueue.main.async {
+      self.activityIndicator.stopAnimating()
+      
+      let alertController = UIAlertController(title: message, message: "", preferredStyle: .alert)
+      alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+      self.present(alertController, animated: true, completion: nil)
+    }
+  }
   
   @objc
-  func pay(_ configDict: NSDictionary, resolver resolve: RCTPromiseResolveBlock, rejecter reject: RCTPromiseRejectBlock) -> Void {
+  func pay(_ configDict: NSDictionary, resolver resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) -> Void {
     let config = configDict as! [String: String]
     self.tokenServerUrl = config["tokenServerUrl"] ?? ""
     self.nonceServerUrl = config["nonceServerUrl"] ?? ""
+    self.token = config["token"] ?? ""
+    self.promiseResolver = resolve;
+    self.promiseRejecter = reject;
     if tokenServerUrl != "" {
-      resolve(self.fetchClientToken())
-    } else {
-      let error = NSError(domain: "", code: 200, userInfo: nil)
-      reject("E_COUNT", "count cannot be negative", error)
+      self.fetchClientToken()
+    } else if self.token != "" {
+      self.showDropIn()
     }
-//    if (count == 0) {
-//      let error = NSError(domain: "", code: 200, userInfo: nil)
-//      reject("E_COUNT", "count cannot be negative", error)
-//    } else {
-//      count -= 1
-//      resolve("count was decremented")
-//    }
   }
 }

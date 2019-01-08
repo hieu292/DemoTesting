@@ -48,7 +48,7 @@ public class PaymentModule extends ReactContextBaseJavaModule implements Activit
 
     @Override
     public String getName() {
-        return "BrainTreePaymentCustom";
+        return "BraintreePayment";
     }
 
     @Override

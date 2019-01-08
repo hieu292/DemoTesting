@@ -3,15 +3,16 @@ import React from 'react'
 import { Button, Text, View } from 'react-native';
 
 class HomeScreen extends React.Component {
-  paySdk = () => {
-    BraintreePayment.pay({
-      tokenServerUrl: "http://192.168.10.59:8000/api/braintree/v1/getToken/",
-      nonceServerUrl: "http://192.168.10.59:8000/api/braintree/v1/sandbox"
-    }).then(data => {
+  paySdk = async () => {
+    try {
+      const data = await BraintreePayment.pay({
+        tokenServerUrl: "http://192.168.10.59:8000/api/braintree/v1/getToken/",
+        nonceServerUrl: "http://192.168.10.59:8000/api/braintree/v1/sandbox"
+      });
       console.log("data response: ", JSON.parse(data));
-    }).catch(error => {
+    } catch (error) {
       console.log("error response: ", error);
-    })
+    }
   }
   
   render() {

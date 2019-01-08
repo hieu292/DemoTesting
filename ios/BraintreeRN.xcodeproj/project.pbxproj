@@ -47,9 +47,9 @@
 		5A76600021DDCA50006390AB /* CookieManagerBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A765FFF21DDCA50006390AB /* CookieManagerBridge.m */; };
 		5AC8810921E06F5C00CDADF2 /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC8810821E06F5C00CDADF2 /* Counter.swift */; };
 		5AC8813021E06FB300CDADF2 /* Counter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC8812F21E06FB300CDADF2 /* Counter.m */; };
-		7DEE0F78D7CBF354616D4623 /* libPods-BraintreeRN.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD5CE666BE200D9CF0BC45B9 /* libPods-BraintreeRN.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
+		CF6B225A8D27E3F36728363B /* Pods_BraintreeRN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63E27BCE2C4530945DAC6C95 /* Pods_BraintreeRN.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -366,10 +366,10 @@
 		5AC8812F21E06FB300CDADF2 /* Counter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Counter.m; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		639D2FCB437F6759E53D3EAB /* Pods-BraintreeRN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BraintreeRN.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BraintreeRN/Pods-BraintreeRN.debug.xcconfig"; sourceTree = "<group>"; };
+		63E27BCE2C4530945DAC6C95 /* Pods_BraintreeRN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BraintreeRN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
-		DD5CE666BE200D9CF0BC45B9 /* libPods-BraintreeRN.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BraintreeRN.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -397,7 +397,7 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				7DEE0F78D7CBF354616D4623 /* libPods-BraintreeRN.a in Frameworks */,
+				CF6B225A8D27E3F36728363B /* Pods_BraintreeRN.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -559,7 +559,7 @@
 			isa = PBXGroup;
 			children = (
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
-				DD5CE666BE200D9CF0BC45B9 /* libPods-BraintreeRN.a */,
+				63E27BCE2C4530945DAC6C95 /* Pods_BraintreeRN.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -684,7 +684,7 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				658436C5ACD336F8751C5266 /* [CP] Copy Pods Resources */,
+				8DB1329B6D16546AA114EFE9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1154,28 +1154,6 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		658436C5ACD336F8751C5266 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-BraintreeRN/Pods-BraintreeRN-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/BraintreeDropIn/Braintree-UIKit-Localization.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Braintree-UIKit-Localization.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BraintreeRN/Pods-BraintreeRN-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		71C8F7DD9D97A4093E032FA1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1196,6 +1174,32 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8DB1329B6D16546AA114EFE9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BraintreeRN/Pods-BraintreeRN-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Braintree/Braintree.framework",
+				"${BUILT_PRODUCTS_DIR}/BraintreeDropIn/BraintreeDropIn.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Braintree.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BraintreeDropIn.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BraintreeRN/Pods-BraintreeRN-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1323,6 +1327,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = BraintreeRN/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -1346,6 +1354,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = BraintreeRN/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (

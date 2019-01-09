@@ -75,7 +75,7 @@ class BraintreePayment: NSObject {
       switch response.result {
       case .success(let value):
         let json = JSON(value)
-        if let result = json.string {
+        if let result = json.rawString() {
           self.promiseResolver?(result)
         }
       case .failure(let error):

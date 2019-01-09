@@ -14,9 +14,7 @@ import BraintreeDropIn
 import SwiftyJSON
 
 @objc(BraintreePayment)
-class BraintreePayment: UIViewController {
-
-  @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+class BraintreePayment: NSObject {
   
   var tokenServerUrl: String = "";
   var nonceServerUrl: String = "";
@@ -40,14 +38,13 @@ class BraintreePayment: UIViewController {
       }
   }
   
-  @IBAction func showDropIn(isSendNonceServer: Bool) {
+  func showDropIn(isSendNonceServer: Bool) {
     let request = BTDropInRequest()
     let dropIn = BTDropInController(authorization: self.token, request: request)
     { (controller, result, error) in
       if (error != nil) {
         self.promiseRejecter?("E_ERROR", "Unexpected", error)
       } else if (result?.isCancelled == true) {
-        self.show(message: "Transaction Cancelled")
         self.promiseRejecter?("E_USER_CANCELLED", "User Cancelled", error)
       } else if let nonce = result?.paymentMethod?.nonce {
         if(isSendNonceServer){
@@ -57,11 +54,18 @@ class BraintreePayment: UIViewController {
       }
       controller.dismiss(animated: true, completion: nil)
     }
-    self.present(dropIn!, animated: true, completion: nil)
+    self.reactRoot()!.present(dropIn!, animated: true, completion: nil)
+  }
+  
+  func reactRoot() -> UIViewController? {
+    var topController = UIApplication.shared.keyWindow?.rootViewController
+    if (topController?.presentedViewController != nil) {
+      topController = topController?.presentedViewController
+    }
+    return topController
   }
 
   func sendRequestPaymentToServer(nonce: String) {
-    self.activityIndicator.startAnimating()
     
     let parameters: Parameters = [
       "nonce": nonce
@@ -72,23 +76,11 @@ class BraintreePayment: UIViewController {
       case .success(let value):
         let json = JSON(value)
         if let result = json.string {
-          self.show(message: "Successfully charged. Thanks So Much :)")
           self.promiseResolver?(result)
         }
       case .failure(let error):
-        self.show(message: "Transaction failed. Please try again.")
         self.promiseRejecter?("E_Transaction_Failed", "Transaction failed", error)
       }
-    }
-  }
-  
-  func show(message: String) {
-    DispatchQueue.main.async {
-      self.activityIndicator.stopAnimating()
-      
-      let alertController = UIAlertController(title: message, message: "", preferredStyle: .alert)
-      alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-      self.present(alertController, animated: true, completion: nil)
     }
   }
   

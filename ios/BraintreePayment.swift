@@ -21,6 +21,7 @@ class BraintreePayment: UIViewController {
   var tokenServerUrl: String = "";
   var nonceServerUrl: String = "";
   var token: String = "";
+  var nonce: String = "";
   var promiseResolver: RCTPromiseResolveBlock?;
   var promiseRejecter: RCTPromiseRejectBlock?;
   
@@ -31,7 +32,7 @@ class BraintreePayment: UIViewController {
           let json = JSON(value)
           if let clientToken = json["clientToken"].string {
             self.token = clientToken
-            self.showDropIn()
+            self.showDropIn(isSendNonceServer: true)
           }
         case .failure(let error):
           self.promiseRejecter?("E_GET_TOKEN", "cannot get token", error)
@@ -39,7 +40,7 @@ class BraintreePayment: UIViewController {
       }
   }
   
-  func showDropIn() {
+  @IBAction func showDropIn(isSendNonceServer: Bool) {
     let request = BTDropInRequest()
     let dropIn = BTDropInController(authorization: self.token, request: request)
     { (controller, result, error) in
@@ -49,7 +50,10 @@ class BraintreePayment: UIViewController {
         self.show(message: "Transaction Cancelled")
         self.promiseRejecter?("E_USER_CANCELLED", "User Cancelled", error)
       } else if let nonce = result?.paymentMethod?.nonce {
-        self.sendRequestPaymentToServer(nonce: nonce)
+        if(isSendNonceServer){
+          self.sendRequestPaymentToServer(nonce: nonce)
+        }
+        self.nonce = nonce
       }
       controller.dismiss(animated: true, completion: nil)
     }
@@ -96,10 +100,14 @@ class BraintreePayment: UIViewController {
     self.token = config["token"] ?? ""
     self.promiseResolver = resolve;
     self.promiseRejecter = reject;
-    if tokenServerUrl != "" {
+    if (tokenServerUrl != "" && nonceServerUrl != "") {
       self.fetchClientToken()
     } else if self.token != "" {
-      self.showDropIn()
+      self.showDropIn(isSendNonceServer: false)
+      resolve(self.nonce)
+    } else {
+      let error = NSError(domain: "", code: 400, userInfo: [NSLocalizedDescriptionKey : "Invalid Input" ])
+      reject("WRONG_PARAMETERS", "Pass wrong parameters", error)
     }
   }
 }

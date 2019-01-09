@@ -1,4 +1,4 @@
-import { ImagePicker, BraintreePayment, CookieManager, CalendarManager } from '../lib'
+import { BraintreePayment} from '../lib'
 import React from 'react'
 import { Button, Text, View } from 'react-native';
 
@@ -6,8 +6,8 @@ class HomeScreen extends React.Component {
   paySdk = async () => {
     try {
       const data = await BraintreePayment.pay({
-        tokenServerUrl: "http://192.168.10.115:8000/api/braintree/v1/getToken/",
-        nonceServerUrl: "http://192.168.10.115:8000/api/braintree/v1/sandbox"
+        tokenServerUrl: "http://192.168.1.2:8000/api/braintree/v1/getToken/",
+        nonceServerUrl: "http://192.168.1.2:8000/api/braintree/v1/sandbox"
       });
       console.log("data response: ", JSON.parse(data));
     } catch (error) {
@@ -26,31 +26,6 @@ class HomeScreen extends React.Component {
         <Button
           title={"Pay Native SDK"}
           onPress={this.paySdk}
-        />
-        <Button
-          title={"Audio Player Android"}
-          onPress={() => this.props.navigation.navigate("Player")}
-        />
-        <Button
-          title={"Show Image Picker Android"}
-          onPress={() => ImagePicker.openSelectDialog(
-            {}, // no config yet
-            (uri) => { console.log(uri) },
-            (error) => { console.log(error) })}
-        />
-        <Button
-          title={"Clear Cookie Ios"}
-          onPress={() => CookieManager.clearCookies()}
-        />
-        <Button
-          title={"Log Calendar Ios"}
-          onPress={() => CalendarManager.addEvent("One", "Two", 3, function(o) {
-            console.log('In Callback', o);
-          })}
-        />
-        <Button
-          title={"Counter Ios"}
-          onPress={() => this.props.navigation.navigate("Counter")}
         />
       </View>
     );

@@ -6,9 +6,16 @@ use_frameworks!
 
 target 'BraintreeRN' do
 
-
   # Pods for BraintreeRN
   pod 'BraintreeDropIn'
+
+  # Includes Cards and PayPal
+  pod 'Braintree'
+  pod 'Braintree/PaymentFlow'
+
+  # Optionally include additional Pods
+  pod 'Braintree/DataCollector'
+  pod 'Braintree/Venmo'
   
   pod 'Alamofire', '~> 4.8'
 

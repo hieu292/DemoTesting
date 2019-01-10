@@ -43,14 +43,17 @@ class BraintreePayment: NSObject {
     let dropIn = BTDropInController(authorization: self.token, request: request)
     { (controller, result, error) in
       if (error != nil) {
+        print("Unexpected error: \(error!).")
         self.promiseRejecter?("E_ERROR", "Unexpected", error)
       } else if (result?.isCancelled == true) {
         self.promiseRejecter?("E_USER_CANCELLED", "User Cancelled", error)
       } else if let nonce = result?.paymentMethod?.nonce {
-        if(isSendNonceServer){
-          self.sendRequestPaymentToServer(nonce: nonce)
-        }
         self.nonce = nonce
+        if(isSendNonceServer){
+          self.sendRequestPaymentToServer(nonce: self.nonce)
+        } else {
+          self.promiseResolver?(self.nonce)
+        }
       }
       controller.dismiss(animated: true, completion: nil)
     }
@@ -89,7 +92,7 @@ class BraintreePayment: NSObject {
     let config = configDict as! [String: String]
     self.tokenServerUrl = config["tokenServerUrl"] ?? ""
     self.nonceServerUrl = config["nonceServerUrl"] ?? ""
-    self.token = config["token"] ?? ""
+    self.token = config["clientToken"] ?? ""
     self.promiseResolver = resolve;
     self.promiseRejecter = reject;
     if (tokenServerUrl != "" && nonceServerUrl != "") {

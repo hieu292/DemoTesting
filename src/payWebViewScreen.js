@@ -5,7 +5,7 @@ class PayWebViewScreen extends React.Component {
   render() {
     return (
       <WebView
-        source={{uri: 'http://192.168.10.59:8000'}}
+        source={{uri: 'http://192.168.10.115:8000'}}
         style={{marginTop: 20}}
       />
     );

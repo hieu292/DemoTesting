@@ -5,6 +5,8 @@ PODS:
     - Braintree/Core (= 4.21.0)
     - Braintree/PayPal (= 4.21.0)
     - Braintree/UI (= 4.21.0)
+  - Braintree/Apple-Pay (4.21.0):
+    - Braintree/Core
   - Braintree/Card (4.21.0):
     - Braintree/Core
   - Braintree/Core (4.21.0)
@@ -31,9 +33,6 @@ PODS:
   - Braintree/UnionPay (4.21.0):
     - Braintree/Card
     - Braintree/Core
-  - Braintree/Venmo (4.21.0):
-    - Braintree/Core
-    - Braintree/PayPalDataCollector
   - BraintreeDropIn (7.0.0):
     - BraintreeDropIn/DropIn (= 7.0.0)
   - BraintreeDropIn/DropIn (7.0.0):
@@ -50,8 +49,10 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.8)
   - Braintree
+  - Braintree/Apple-Pay
   - Braintree/DataCollector
-  - Braintree/Venmo
+  - Braintree/PaymentFlow
+  - Braintree/PayPal
   - BraintreeDropIn
   - CardIO
   - SwiftyJSON (~> 4.0)
@@ -71,6 +72,6 @@ SPEC CHECKSUMS:
   CardIO: 56983b39b62f495fc6dae9ad7cf875143df06443
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 5af5469965f7a4138e9ba1137710e338d2435040
+PODFILE CHECKSUM: 856be464feaf06d7f3c8c593a62adc3113eecc54
 
 COCOAPODS: 1.5.3

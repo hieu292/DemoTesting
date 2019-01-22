@@ -15,7 +15,8 @@ target 'BraintreeRN' do
 
   # Optionally include additional Pods
   pod 'Braintree/DataCollector'
-  pod 'Braintree/Venmo'
+  pod 'Braintree/PayPal'
+  pod 'Braintree/Apple-Pay'
   
   pod 'Alamofire', '~> 4.8'
 

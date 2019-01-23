@@ -9,13 +9,11 @@
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
-#import "BraintreeCore.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  [BTAppSwitch setReturnURLScheme:self.paymentsURLScheme];
   NSURL *jsCodeLocation;
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
@@ -32,22 +30,6 @@
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   return YES;
-}
-
-- (BOOL)application:(UIApplication *)application
-            openURL:(NSURL *)url
-            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
-
-    if ([url.scheme localizedCaseInsensitiveCompare:self.paymentsURLScheme] == NSOrderedSame) {
-        return [BTAppSwitch handleOpenURL:url options:options];
-    }
-
-    return [RCTLinkingManager application:application openURL:url options:options];
-}
-
-- (NSString *)paymentsURLScheme {
-    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
-    return [NSString stringWithFormat:@"%@.%@", bundleIdentifier, @"payments"];
 }
 
 @end

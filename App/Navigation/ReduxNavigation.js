@@ -5,7 +5,7 @@ import {
   reduxifyNavigator
 } from 'react-navigation-redux-helpers'
 import { connect } from 'react-redux'
-import AppNavigation from './AppNavigation'
+import AppNavigation from './App/AppNavigation'
 
 createReactNavigationReduxMiddleware(
   'root',

@@ -26,8 +26,8 @@ const OS_DATA = [
 const APP_DATA = [
   {title: 'Bundle Id', info: DeviceInfo.getBundleId()},
   {title: 'Build Number', info: DeviceInfo.getBuildNumber()},
-  {title: 'App Version', info: DeviceInfo.getVersion()},
-  {title: 'App Version (Readable)', info: DeviceInfo.getReadableVersion()}
+  {title: 'AppNavigation Version', info: DeviceInfo.getVersion()},
+  {title: 'AppNavigation Version (Readable)', info: DeviceInfo.getReadableVersion()}
 ]
 
 export default class DeviceInfoScreen extends React.Component {
@@ -141,7 +141,7 @@ export default class DeviceInfoScreen extends React.Component {
           <View style={{padding: 10}}>
             {this.renderCard('Device Hardware', HARDWARE_DATA)}
             {this.renderCard('Device OS', OS_DATA)}
-            {this.renderCard('App Info', APP_DATA)}
+            {this.renderCard('AppNavigation Info', APP_DATA)}
             {this.renderCard('Net Info', this.netInfo())}
           </View>
         </ScrollView>

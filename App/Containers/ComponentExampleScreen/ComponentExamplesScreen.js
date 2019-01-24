@@ -6,6 +6,9 @@ import styles from './ComponentExamplesScreenStyles'
 
 // Examples Render Engine
 import ExamplesRegistry from '../../Services/RegistryService/ExamplesRegistry'
+import '../../Services/RegistryService/FullButton'
+import '../../Services/RegistryService/drawerButtonRegister'
+import '../../Services/RegistryService/roundedButtonRegister'
 
 class ComponentExamplesScreen extends React.Component {
   renderAndroidWarning () {

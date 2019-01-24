@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Modal } from 'react-native'
 import DebugConfig from '../../../Config/DebugConfig'
 import RoundedButton from '../RoundedButton/RoundedButton'
-import PresentationScreen from '../../../Containers/PresentationScreen/PresentationScreen'
+import PresentationNavigation from '../../../Navigation/PresentationNavigation/PresentationNavigation'
 
 export default class DevscreensButton extends React.Component {
   constructor (props) {
@@ -26,7 +26,7 @@ export default class DevscreensButton extends React.Component {
           <Modal
             visible={this.state.showModal}
             onRequestClose={this.toggleModal}>
-            <PresentationScreen screenProps={{ toggle: this.toggleModal }} />
+            <PresentationNavigation screenProps={{ toggle: this.toggleModal }} />
           </Modal>
         </View>
       )

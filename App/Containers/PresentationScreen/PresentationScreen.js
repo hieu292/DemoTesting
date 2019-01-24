@@ -2,14 +2,6 @@ import React from 'react'
 import { ScrollView, Text, Image, View, TouchableOpacity } from 'react-native'
 import { Images } from '../../Themes/'
 import ButtonBox from '../../Components/Buttons/ButtonBox/ButtonBox'
-import { createStackNavigator, createAppContainer } from 'react-navigation'
-// Screens
-import APITestingScreen from '../ApiTestingScreen/APITestingScreen'
-import ComponentExamplesScreen from '../ComponentExampleScreen/ComponentExamplesScreen'
-import DeviceInfoScreen from '../DeviceInfoScreen/DeviceInfoScreen'
-import PluginExamplesScreen from '../PluginExamplesScreen/PluginExamplesScreen'
-import ThemeScreen from '../ThemeScreen/ThemeScreen'
-import FaqScreen from '../FaqScreen/FaqScreen'
 
 // Styles
 import styles from './PresentationScreenStyles'
@@ -81,33 +73,4 @@ class PresentationScreen extends React.Component {
   }
 }
 
-const stackNavigator = createStackNavigator({
-  PresentationScreen: {screen: PresentationScreen},
-  APITestingScreen: {screen: APITestingScreen},
-  ComponentExamplesScreen: {screen: ComponentExamplesScreen},
-  DeviceInfoScreen: {screen: DeviceInfoScreen},
-  PluginExamplesScreen: {screen: PluginExamplesScreen},
-  ThemeScreen: {screen: ThemeScreen},
-  FaqScreen: {screen: FaqScreen}
-}, {
-  cardStyle: {
-    opacity: 1,
-    backgroundColor: '#3e243f'
-  },
-  initialRouteName: 'PresentationScreen',
-  headerMode: 'none',
-  // Keeping this here for future when we can make
-  navigationOptions: {
-    header: {
-      left: (
-        <TouchableOpacity onPress={() => window.alert('pop')} ><Image source={Images.closeButton} style={{marginHorizontal: 10}} /></TouchableOpacity>
-      ),
-      style: {
-        backgroundColor: '#3e243f'
-      }
-    }
-  }
-})
-
-export default createAppContainer(stackNavigator);
-
+export default PresentationScreen;

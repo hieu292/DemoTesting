@@ -1,5 +1,5 @@
 import React from 'react'
-import Icon from '../../Services/RegistryService/vectorExample'
+import Icon from 'react-native-vector-icons/FontAwesome'
 import { View } from 'react-native'
 
 const VectorIcons = () => (
